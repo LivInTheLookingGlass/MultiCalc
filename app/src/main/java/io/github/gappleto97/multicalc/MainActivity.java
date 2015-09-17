@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -20,7 +21,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
-    private LinearLayout mBasic, mScientific, mProgrammatic;
 
     private CharSequence mTitle;
 
@@ -42,11 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 
         showResult = (EditText)findViewById(R.id.result_id);
 
-        mBasic = (LinearLayout)findViewById(R.id.background_basic);
-        //mScientific = (LinearLayout)findViewById(R.id.background_scientific);
-        //mProgrammatic = (LinearLayout)findViewById(R.id.background_programmatic);
-        //mScientific.setVisibility(View.GONE);
-        //mProgrammatic.setVisibility(View.GONE);
+        showBasic();
         setTitle(mTitle);
     }
 
@@ -78,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             setTitle(mTitle);
         }
         catch (Exception e) {
+            Log.d("Debug","Catch block triggered");
         }
     }
     /*
@@ -221,6 +218,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         findViewById(R.id.Btnln_id).setVisibility(View.GONE);
         findViewById(R.id.Btnroot_id).setVisibility(View.GONE);
         findViewById(R.id.Btncrt_id).setVisibility(View.GONE);
+        ((Button)findViewById(R.id.Btnclear_id)).setText("CLEAR");
     }
 
     private void hideProgrammatic() {
@@ -245,6 +243,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         findViewById(R.id.Btnln_id).setVisibility(View.VISIBLE);
         findViewById(R.id.Btnroot_id).setVisibility(View.VISIBLE);
         findViewById(R.id.Btncrt_id).setVisibility(View.VISIBLE);
+        ((Button)findViewById(R.id.Btnclear_id)).setText("CLR");
     }
 
     private void showProgrammatic() {
@@ -254,8 +253,8 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 
     private void reset() {
         // TODO Auto-generated method stub
-        str =" ";
-        showResult.setText("");
+        //str =" ";
+        showResult.setText(str = " ");
     }
 
     private void insert(int j) {
