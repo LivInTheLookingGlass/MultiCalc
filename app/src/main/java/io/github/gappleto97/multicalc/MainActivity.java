@@ -63,21 +63,15 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         switch (number) {
             case 1:
                 mTitle = getString(R.string.title_section1);
-                mBasic.setVisibility(View.VISIBLE);
-                //mScientific.setVisibility(View.GONE);
-                //mProgrammatic.setVisibility(View.GONE);
+                showBasic();
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
-                mBasic.setVisibility(View.GONE);
-                //mScientific.setVisibility(View.VISIBLE);
-                //mProgrammatic.setVisibility(View.GONE);
+                showScientific();
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
-                mBasic.setVisibility(View.GONE);
-                //mScientific.setVisibility(View.GONE);
-                //mProgrammatic.setVisibility(View.VISIBLE);
+                showProgrammatic();
                 break;
         }
         setTitle(mTitle);
@@ -213,7 +207,16 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     }
 
     private void hideScientific()   {
-
+        findViewById(R.id.Btnsin_id).setVisibility(View.GONE);
+        findViewById(R.id.Btnsinh_id).setVisibility(View.GONE);
+        findViewById(R.id.Btncos_id).setVisibility(View.GONE);
+        findViewById(R.id.Btncosh_id).setVisibility(View.GONE);
+        findViewById(R.id.Btntan_id).setVisibility(View.GONE);
+        findViewById(R.id.Btntanh_id).setVisibility(View.GONE);
+        findViewById(R.id.Btnfact_id).setVisibility(View.GONE);
+        findViewById(R.id.Btnln_id).setVisibility(View.GONE);
+        findViewById(R.id.Btnroot_id).setVisibility(View.GONE);
+        findViewById(R.id.Btncrt_id).setVisibility(View.GONE);
     }
 
     private void hideProgrammatic() {
@@ -228,6 +231,16 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     private void showScientific()   {
         hideBasic();
         hideProgrammatic();
+        findViewById(R.id.Btnsin_id).setVisibility(View.VISIBLE);
+        findViewById(R.id.Btnsinh_id).setVisibility(View.VISIBLE);
+        findViewById(R.id.Btncos_id).setVisibility(View.VISIBLE);
+        findViewById(R.id.Btncosh_id).setVisibility(View.VISIBLE);
+        findViewById(R.id.Btntan_id).setVisibility(View.VISIBLE);
+        findViewById(R.id.Btntanh_id).setVisibility(View.VISIBLE);
+        findViewById(R.id.Btnfact_id).setVisibility(View.VISIBLE);
+        findViewById(R.id.Btnln_id).setVisibility(View.VISIBLE);
+        findViewById(R.id.Btnroot_id).setVisibility(View.VISIBLE);
+        findViewById(R.id.Btncrt_id).setVisibility(View.VISIBLE);
     }
 
     private void showProgrammatic() {

@@ -27,49 +27,67 @@
             android:layout_weight="0.09"
             />
 
-    <LinearLayout
-        android:id="@+id/row0"
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="0.1">
-
-        <Button
-            android:id="@+id/Btnclear_id"
+        <LinearLayout
+            android:id="@+id/row0"
+            android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="0.25"
-            android:text="clear"
-            android:onClick="btnclearClicked"
-            />
+            android:layout_weight="0.1">
 
-        <Button
-            android:id="@+id/Btndivide_id"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.25"
-            android:text="÷"
-            android:onClick="btndivideClicked"
-            />
+            <Button
+                android:id="@+id/Btnclear_id"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.25"
+                android:text="clr"
+                android:onClick="btnclearClicked"
+                />
 
-        <Button
-            android:id="@+id/Btnmulti_id"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.25"
-            android:text="×"
-            android:onClick="btnmultiClicked"
-            />
+            <Button
+                android:id="@+id/Btnln_id"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.25"
+                android:text="ln"
+                android:onClick="btnlnClicked"
+                />
 
-        <Button
-            android:id="@+id/Btnback_id"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.25"
-            android:text="\u232B"
-            android:onClick="btnbackClicked"
-            />
-    </LinearLayout>
+            <Button
+                android:id="@+id/Btnfact_id"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.25"
+                android:text="!"
+                android:onClick="btnfactClicked"
+                />
+
+            <Button
+                android:id="@+id/Btndivide_id"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.25"
+                android:text="÷"
+                android:onClick="btndivideClicked"
+                />
+
+            <Button
+                android:id="@+id/Btnmulti_id"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.25"
+                android:text="×"
+                android:onClick="btnmultiClicked"
+                />
+
+            <Button
+                android:id="@+id/Btnback_id"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.25"
+                android:text="\u232B"
+                android:onClick="btnbackClicked"
+                />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/row1"
@@ -77,6 +95,25 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="0.1">
+
+            <Button
+                android:id="@+id/Btnroot_id"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="x√y"
+                android:onClick="btnrootClicked"
+                />
+
+            <Button
+                android:id="@+id/Btncrt_id"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="^"
+                android:onClick="btn7Clicked"
+                />
+
             <Button
                 android:id="@+id/Btn7_id"
                 android:layout_width="fill_parent"
@@ -121,6 +158,24 @@
             android:layout_height="fill_parent"
             android:layout_weight="0.1"
             android:layout_below="@id/row1">
+
+            <Button
+                android:id="@+id/Btnsinh_id"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="sinh"
+                android:onClick="btnsinhClicked"
+                />
+
+            <Button
+                android:id="@+id/Btnsin_id"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="sin"
+                android:onClick="btnsinClicked"
+                />
 
             <Button
                 android:id="@+id/Btn4_id"
@@ -168,6 +223,24 @@
             android:layout_below="@id/row2">
 
             <Button
+                android:id="@+id/Btncosh_id"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="cosh"
+                android:onClick="btncoshClicked"
+                />
+
+            <Button
+                android:id="@+id/Btncos_id"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="cos"
+                android:onClick="btncosClicked"
+                />
+
+            <Button
                 android:id="@+id/Btn1_id"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -211,6 +284,24 @@
             android:layout_height="fill_parent"
             android:layout_weight="0.1"
             android:layout_below="@id/row3">
+
+            <Button
+                android:id="@+id/Btntanh_id"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.25"
+                android:text="tanh"
+                android:onClick="btntanhClicked"
+                />
+
+            <Button
+                android:id="@+id/Btntan_id"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.25"
+                android:text="tan"
+                android:onClick="btntanClicked"
+                />
 
             <Button
                 android:id="@+id/Btndot_id"
