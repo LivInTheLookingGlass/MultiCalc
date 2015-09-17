@@ -181,11 +181,11 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     }
 
     public void btndivideClicked(View v){
-        insert('/');
+        insert('÷');
     }
 
     public void btnmultiClicked(View v){
-        insert('x');
+        insert('×');
     }
 
     public void btndotClicked(View v){
@@ -198,6 +198,18 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 
     public void btnclearClicked(View v){
         reset();
+    }
+
+    public void btnParClicked(View v)   {
+
+    }
+
+    public void btnSignClicked(View v)  {
+
+    }
+
+    public void btnbackClicked(View v)  {
+        remove();
     }
 
     private void hideBasic()    {
@@ -256,6 +268,14 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         showResult.setText(str);
     }
 
+    private void remove()   {
+        Log.d("debug","remove called");
+        str = str.substring(0,Math.max(str.length() - 1, 0));
+        showResult.setText(str);
+        if (str == "")
+            str = " ";
+    }
+
     private void perform() {
         // TODO Auto-generated method stub
         str = "";
@@ -308,11 +328,11 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 double v = parseFactor();
                 for (;;) {
                     eatSpace();
-                    if (c == '/') { // division
+                    if (c == '÷') { // division
                         eatChar();
                         v /= parseFactor();
-                    } else if (c == 'x' || c == '(') { // multiplication
-                        if (c == 'x') eatChar();
+                    } else if (c == '×' || c == '(') { // multiplication
+                        if (c == '×') eatChar();
                         v *= parseFactor();
                     } else {
                         return v;
