@@ -200,6 +200,33 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         reset();
     }
 
+    private void hideBasic()    {
+
+    }
+
+    private void hideScientific()   {
+
+    }
+
+    private void hideProgrammatic() {
+
+    }
+
+    private void showBasic()    {
+        hideScientific();
+        hideProgrammatic();
+    }
+
+    private void showScientific()   {
+        hideBasic();
+        hideProgrammatic();
+    }
+
+    private void showProgrammatic() {
+        hideBasic();
+        hideScientific();
+    }
+
     private void reset() {
         // TODO Auto-generated method stub
         str =" ";
