@@ -247,7 +247,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 
     private void insert(int j) {
         // TODO Auto-generated method stub
-        if (str == " ")
+        if (str.equals(" "))
             str = "";
         str = str+Integer.toString(j);
         //num = Integer.valueOf(str).intValue();
@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         }
         else
             Log.v("debug","false");
-        if (str != " ")
+        if (!str.equals(" "))
             str = str+j;
         showResult.setText(str);
     }
@@ -272,7 +272,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         Log.d("debug","remove called");
         str = str.substring(0,Math.max(str.length() - 1, 0));
         showResult.setText(str);
-        if (str == "")
+        if (str.equals(""))
             str = " ";
     }
 
@@ -374,12 +374,15 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             }
         }
         double result = new Parser().parse();
-        String print = "";
+        String print;
         if (result == (int)result)
             print = Integer.toString((int) result);
         else
             print = Double.toString(result);
         showResult.setText(""+print);
-        str = print;
+        if (!print.equals("NaN"))
+            str = print;
+        else
+            str = " ";
     }
 }
