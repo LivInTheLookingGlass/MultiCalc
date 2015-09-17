@@ -22,9 +22,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private LinearLayout mBasic, mScientific, mProgrammatic;
 
-    /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
-     */
     private CharSequence mTitle;
 
     public String str =" ";
@@ -85,12 +82,12 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         }
         setTitle(mTitle);
     }
-
+    /*
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
-    }
+    } */
 
     /**
      * A placeholder fragment containing a simple view.
