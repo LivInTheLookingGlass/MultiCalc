@@ -120,8 +120,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            return rootView;
+            return inflater.inflate(R.layout.fragment_main, container, false);
         }
 
         @Override
@@ -379,7 +378,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             print = Integer.toString((int) result);
         else
             print = Double.toString(result);
-        showResult.setText(""+print);
+        showResult.setText(print);
         if (!print.equals("NaN"))
             str = print;
         else
