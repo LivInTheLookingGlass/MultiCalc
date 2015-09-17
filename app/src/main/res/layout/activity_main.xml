@@ -172,9 +172,18 @@
                 android:id="@+id/Btndot_id"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:layout_weight="0.5"
+                android:layout_weight="0.25"
                 android:text="."
                 android:onClick="btndotClicked"
+                />
+
+            <Button
+                android:id="@+id/Btnzero_id"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.25"
+                android:text="0"
+                android:onClick="btn0Clicked"
                 />
 
             <Button

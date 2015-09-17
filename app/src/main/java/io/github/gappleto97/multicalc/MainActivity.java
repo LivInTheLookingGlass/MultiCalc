@@ -132,6 +132,10 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         }
     }
 
+    public void btn0Clicked(View v){
+        insert(0);
+    }
+
     public void btn1Clicked(View v){
         insert(1);
     }
@@ -170,32 +174,22 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 
     public void btnplusClicked(View v){
         insert('+');
-        //perform();
-        //op = '+';
     }
 
     public void btnminusClicked(View v){
         insert('-');
-        //perform();
-        //op = '-';
     }
 
     public void btndivideClicked(View v){
         insert('/');
-        //perform();
-        //op = '/';
     }
 
     public void btnmultiClicked(View v){
         insert('x');
-        //perform();
-        //op = '*';
     }
 
     public void btndotClicked(View v){
         insert('.');
-        //perform();
-        //op = '/';
     }
 
     public void btnequalClicked(View v){
