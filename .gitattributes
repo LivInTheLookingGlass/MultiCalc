@@ -1,2 +1,3 @@
-gradle/* linguist-vendored
-app/src/androidTest/* linguist-vendored
+gradle/** linguist-vendored
+app/src/androidTest/** linguist-vendored
+.idea/** linguist-vendored
