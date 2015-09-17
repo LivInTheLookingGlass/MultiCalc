@@ -28,8 +28,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     private CharSequence mTitle;
 
     public String str =" ";
-    Character op = 'q';
-    double num,numtemp;
     EditText showResult;
 
     @Override
@@ -39,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        //mTitle = getTitle();
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
@@ -49,9 +46,11 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         showResult = (EditText)findViewById(R.id.result_id);
 
         mBasic = (LinearLayout)findViewById(R.id.background_basic);
-        setTitle(mTitle);
+        //mScientific = (LinearLayout)findViewById(R.id.background_scientific);
+        //mProgrammatic = (LinearLayout)findViewById(R.id.background_programmatic);
         //mScientific.setVisibility(View.GONE);
         //mProgrammatic.setVisibility(View.GONE);
+        setTitle(mTitle);
     }
 
     @Override
@@ -210,9 +209,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     private void reset() {
         // TODO Auto-generated method stub
         str =" ";
-        op ='q';
-        num = 0;
-        numtemp = 0;
         showResult.setText("");
     }
 
@@ -236,14 +232,12 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             Log.v("debug","false");
         if (str != " ")
             str = str+j;
-        op = j;
         showResult.setText(str);
     }
 
     private void perform() {
         // TODO Auto-generated method stub
         str = "";
-        numtemp = num;
     }
 
     private void calculate() {
@@ -346,6 +340,5 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             print = Double.toString(result);
         showResult.setText(""+print);
         str = print;
-        num = result;
     }
 }
