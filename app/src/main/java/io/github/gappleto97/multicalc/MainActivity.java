@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
+    private LinearLayout mBasic, mScientific, mProgrammatic;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -45,6 +47,10 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
         showResult = (EditText)findViewById(R.id.result_id);
+
+        mBasic = (LinearLayout)findViewById(R.id.background_basic);
+        //mScientific.setVisibility(View.GONE);
+        //mProgrammatic.setVisibility(View.GONE);
     }
 
     @Override
@@ -60,12 +66,21 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         switch (number) {
             case 1:
                 mTitle = getString(R.string.title_section1);
+                mBasic.setVisibility(View.VISIBLE);
+                //mScientific.setVisibility(View.GONE);
+                //mProgrammatic.setVisibility(View.GONE);
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
+                mBasic.setVisibility(View.GONE);
+                //mScientific.setVisibility(View.VISIBLE);
+                //mProgrammatic.setVisibility(View.GONE);
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
+                mBasic.setVisibility(View.GONE);
+                //mScientific.setVisibility(View.GONE);
+                //mProgrammatic.setVisibility(View.VISIBLE);
                 break;
         }
     }
