@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
+        //mTitle = getTitle();
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         showResult = (EditText)findViewById(R.id.result_id);
 
         mBasic = (LinearLayout)findViewById(R.id.background_basic);
+        setTitle(mTitle);
         //mScientific.setVisibility(View.GONE);
         //mProgrammatic.setVisibility(View.GONE);
     }
@@ -83,13 +84,13 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 //mProgrammatic.setVisibility(View.VISIBLE);
                 break;
         }
+        setTitle(mTitle);
     }
 
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(mTitle);
     }
 
     /**
