@@ -50,6 +50,7 @@
                 android:layout_weight="0.25"
                 android:text="ln"
                 android:onClick="btnlnClicked"
+                android:visibility="gone"
                 />
 
             <Button
@@ -59,6 +60,7 @@
                 android:layout_weight="0.25"
                 android:text="!"
                 android:onClick="btnFactClicked"
+                android:visibility="gone"
                 />
 
             <Button
@@ -103,6 +105,7 @@
                 android:layout_weight="1"
                 android:text="√"
                 android:onClick="btnRootClicked"
+                android:visibility="gone"
                 />
 
             <Button
@@ -112,6 +115,7 @@
                 android:layout_weight="1"
                 android:text="^"
                 android:onClick="btnCrtClicked"
+                android:visibility="gone"
                 />
 
             <Button
@@ -166,6 +170,7 @@
                 android:layout_weight="1"
                 android:text="sinh"
                 android:onClick="btnsinhClicked"
+                android:visibility="gone"
                 />
 
             <Button
@@ -175,6 +180,7 @@
                 android:layout_weight="1"
                 android:text="sin"
                 android:onClick="btnsinClicked"
+                android:visibility="gone"
                 />
 
             <Button
@@ -229,6 +235,7 @@
                 android:layout_weight="1"
                 android:text="cosh"
                 android:onClick="btncoshClicked"
+                android:visibility="gone"
                 />
 
             <Button
@@ -238,6 +245,7 @@
                 android:layout_weight="1"
                 android:text="cos"
                 android:onClick="btncosClicked"
+                android:visibility="gone"
                 />
 
             <Button
@@ -292,6 +300,7 @@
                 android:layout_weight="0.25"
                 android:text="tanh"
                 android:onClick="btntanhClicked"
+                android:visibility="gone"
                 />
 
             <Button
@@ -301,6 +310,7 @@
                 android:layout_weight="0.25"
                 android:text="tan"
                 android:onClick="btntanClicked"
+                android:visibility="gone"
                 />
 
             <Button

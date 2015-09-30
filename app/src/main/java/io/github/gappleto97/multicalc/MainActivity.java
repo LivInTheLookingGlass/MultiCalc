@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 
     private CharSequence mTitle;
 
+    private String mode = "basic";
+
     public String str =" ";
     EditText showResult;
 
@@ -60,21 +62,25 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             switch (number) {
                 case 1:
                     mTitle = getString(R.string.title_section1);
-                    showBasic();
+                    if (!mode.equals("basic"))
+                        showBasic();
                     break;
                 case 2:
                     mTitle = getString(R.string.title_section2);
-                    showScientific();
+                    if (!mode.equals("scientific"))
+                        showScientific();
                     break;
                 case 3:
                     mTitle = getString(R.string.title_section3);
-                    showProgrammatic();
+                    if (!mode.equals("programming"))
+                        showProgrammatic();
                     break;
             }
             setTitle(mTitle);
         }
         catch (Exception e) {
-            Log.d("Debug","Catch block triggered");
+            Log.d("Debug", "Catch block triggered: " + e.getCause() + " , " + e.getMessage());
+            e.printStackTrace();
         }
     }
     /*
@@ -251,23 +257,30 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     }
 
     private void hideScientific()   {
-        findViewById(R.id.Btnsin_id).setVisibility(View.GONE);
-        findViewById(R.id.Btnsinh_id).setVisibility(View.GONE);
-        findViewById(R.id.Btncos_id).setVisibility(View.GONE);
-        findViewById(R.id.Btncosh_id).setVisibility(View.GONE);
-        findViewById(R.id.Btntan_id).setVisibility(View.GONE);
-        findViewById(R.id.Btntanh_id).setVisibility(View.GONE);
-        findViewById(R.id.Btnfact_id).setVisibility(View.GONE);
-        findViewById(R.id.Btnln_id).setVisibility(View.GONE);
-        findViewById(R.id.Btnroot_id).setVisibility(View.GONE);
-        findViewById(R.id.Btncrt_id).setVisibility(View.GONE);
+        try {
+            mode = "scientific";
+            findViewById(R.id.Btnsin_id).setVisibility(View.GONE);
+            findViewById(R.id.Btnsinh_id).setVisibility(View.GONE);
+            findViewById(R.id.Btncos_id).setVisibility(View.GONE);
+            findViewById(R.id.Btncosh_id).setVisibility(View.GONE);
+            findViewById(R.id.Btntan_id).setVisibility(View.GONE);
+            findViewById(R.id.Btntanh_id).setVisibility(View.GONE);
+            findViewById(R.id.Btnfact_id).setVisibility(View.GONE);
+            findViewById(R.id.Btnln_id).setVisibility(View.GONE);
+            findViewById(R.id.Btnroot_id).setVisibility(View.GONE);
+            findViewById(R.id.Btncrt_id).setVisibility(View.GONE);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void hideProgrammatic() {
-
+        mode = "programming";
     }
 
     private void showBasic()    {
+        mode = "basic";
         hideScientific();
         hideProgrammatic();
         ((Button)findViewById(R.id.Btnclear_id)).setText("CLEAR");
