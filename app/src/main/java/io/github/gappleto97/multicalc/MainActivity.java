@@ -257,22 +257,17 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     }
 
     private void hideScientific()   {
-        try {
-            mode = "scientific";
-            findViewById(R.id.Btnsin_id).setVisibility(View.GONE);
-            findViewById(R.id.Btnsinh_id).setVisibility(View.GONE);
-            findViewById(R.id.Btncos_id).setVisibility(View.GONE);
-            findViewById(R.id.Btncosh_id).setVisibility(View.GONE);
-            findViewById(R.id.Btntan_id).setVisibility(View.GONE);
-            findViewById(R.id.Btntanh_id).setVisibility(View.GONE);
-            findViewById(R.id.Btnfact_id).setVisibility(View.GONE);
-            findViewById(R.id.Btnln_id).setVisibility(View.GONE);
-            findViewById(R.id.Btnroot_id).setVisibility(View.GONE);
-            findViewById(R.id.Btncrt_id).setVisibility(View.GONE);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+        mode = "scientific";
+        findViewById(R.id.Btnsin_id).setVisibility(View.GONE);
+        findViewById(R.id.Btnsinh_id).setVisibility(View.GONE);
+        findViewById(R.id.Btncos_id).setVisibility(View.GONE);
+        findViewById(R.id.Btncosh_id).setVisibility(View.GONE);
+        findViewById(R.id.Btntan_id).setVisibility(View.GONE);
+        findViewById(R.id.Btntanh_id).setVisibility(View.GONE);
+        findViewById(R.id.Btnfact_id).setVisibility(View.GONE);
+        findViewById(R.id.Btnln_id).setVisibility(View.GONE);
+        findViewById(R.id.Btnroot_id).setVisibility(View.GONE);
+        findViewById(R.id.Btncrt_id).setVisibility(View.GONE);
     }
 
     private void hideProgrammatic() {
@@ -483,13 +478,8 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 return v;
             }
         }
-        double result = 0;
-        try {
-            result = new Parser().parse();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+        double result;
+        result = new Parser().parse();
         String print;
         if (result == (int)result)
             print = Integer.toString((int) result);
