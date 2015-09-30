@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     }
 
     public void btnlnClicked(View v)  {
-        insert(' ');
+        insert("ln");
     }
 
     public void btnSignClicked(View v)  {
@@ -302,7 +302,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 
     private void insert(int j) {
         // TODO Auto-generated method stub
-        if (str.equals(" "))
+        if (str.equals(" ") || str.equals("0"))
             str = "";
         str = str+Integer.toString(j);
         //num = Integer.valueOf(str).intValue();
@@ -400,7 +400,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                     if (c == '÷') { // division
                         eatChar();
                         v /= parseFactor();
-                    } else if (c == '×' || c == '(' || c == '√' || c == 's' || c == 'c' || c == 't') { // multiplication
+                    } else if (c == '×' || c == '(' || c == '√' || c == 's' || c == 'c' || c == 't' || c == 'l') { // multiplication
                         if (c == '×') eatChar();
                         v *= parseFactor();
                     } else {
@@ -447,6 +447,10 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                         else if (o == 't')
                             v = Math.tan(parseExpression());
                     }
+                } else if (c == 'l')    {
+                    eatChar();
+                    eatChar();
+                    v = Math.log(parseExpression());
                 } else { // numbers
                     StringBuilder sb = new StringBuilder();
                     while ((c >= '0' && c <= '9') || c == '.') {
@@ -460,7 +464,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 eatSpace();
                 if (c == '^') { // exponentiation
                     eatChar();
-                    v = Math.pow(v, parseFactor());
                 }
                 if (negate)
                     v = -v; // unary minus is applied after exponentiation; e.g. -3^2=-9
