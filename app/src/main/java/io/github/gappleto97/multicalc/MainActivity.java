@@ -203,6 +203,10 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         insert('^');
     }
 
+    public void btnRootClicked(View v){
+        insert('√');
+    }
+
     public void btnSignClicked(View v)  {
 
     }
@@ -283,7 +287,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         }
         else
             Log.v("debug","false");
-        if (!str.equals(" ") || j == '(')
+        if (!str.equals(" ") || j == '(' || j == '√')
             str = str+j;
         showResult.setText(str);
     }
@@ -324,7 +328,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 
             // Grammar:
             // expression = term | expression `+` term | expression `-` term
-            // term = factor | term `*` factor | term `/` factor | term brackets
+            // term = factor | term `*` factor | term `/` factor | term brackets | term root
             // factor = brackets | number | factor `^` factor
             // brackets = `(` expression `)`
 
@@ -348,13 +352,10 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 double v = parseFactor();
                 for (;;) {
                     eatSpace();
-                    if (c == '^')   {   //exponent
-                        eatChar();
-                        v = Math.pow(v,parseFactor());
-                    } else if (c == '÷') { // division
+                    if (c == '÷') { // division
                         eatChar();
                         v /= parseFactor();
-                    } else if (c == '×' || c == '(') { // multiplication
+                    } else if (c == '×' || c == '(' || c == '√') { // multiplication
                         if (c == '×') eatChar();
                         v *= parseFactor();
                     } else {
@@ -376,7 +377,11 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                     eatChar();
                     v = parseExpression();
                     if (c == ')') eatChar();
-                } else { // numbers
+                }
+                else if (c == '√') {    //root
+                    eatChar();
+                    v = Math.sqrt(parseExpression());
+                } else  { // numbers
                     StringBuilder sb = new StringBuilder();
                     while ((c >= '0' && c <= '9') || c == '.') {
                         sb.append((char)c);
@@ -396,7 +401,14 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 return v;
             }
         }
-        double result = new Parser().parse();
+        double result = 0;
+        try {
+            result = new Parser().parse();
+        }
+        catch (Exception e) {
+            Log.d("Error",e.getStackTrace().toString());
+            e.printStackTrace();
+        }
         String print;
         if (result == (int)result)
             print = Integer.toString((int) result);
