@@ -58,7 +58,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="0.25"
                 android:text="!"
-                android:onClick="btnfactClicked"
+                android:onClick="btnFactClicked"
                 />
 
             <Button

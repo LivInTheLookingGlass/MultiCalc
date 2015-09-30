@@ -207,8 +207,39 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         insert('√');
     }
 
-    public void btnSignClicked(View v)  {
+    public void btnFactClicked(View v)  {
+        insert('!');
+    }
 
+    public void btnlnClicked(View v)  {
+        insert(' ');
+    }
+
+    public void btnSignClicked(View v)  {
+    }
+
+    public void btnsinClicked(View v)  {
+        insert("sin");
+    }
+
+    public void btnsinhClicked(View v)  {
+        insert("sinh");
+    }
+
+    public void btncosClicked(View v)  {
+        insert("cos");
+    }
+
+    public void btncoshClicked(View v)  {
+        insert("cosh");
+    }
+
+    public void btntanClicked(View v)  {
+        insert("tan");
+    }
+
+    public void btntanhClicked(View v)  {
+        insert("tanh");
     }
 
     public void btnbackClicked(View v)  {
@@ -278,6 +309,19 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         showResult.setText(str);
     }
 
+    private void insert(String j)   {
+        String a = str.substring(str.length() - 1);
+        Log.v("debug", a);
+        if (str.endsWith(".")) {
+            str = str.substring(0, str.length() - 1);
+            Log.v("debug","true");
+        }
+        else
+            Log.v("debug","false");
+        str = str+j;
+        showResult.setText(str);
+    }
+
     private void insert(char j) {
         String a = str.substring(str.length() - 1);
         Log.v("debug", a);
@@ -329,8 +373,9 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             // Grammar:
             // expression = term | expression `+` term | expression `-` term
             // term = factor | term `*` factor | term `/` factor | term brackets | term root
-            // factor = brackets | number | factor `^` factor
+            // factor = brackets | number | factor `^` factor | trig
             // brackets = `(` expression `)`
+            // trig = sin factor | sinh factor | cos factor | cosh factor | tan factor | tanh factor
 
             double parseExpression() {
                 double v = parseTerm();
@@ -355,7 +400,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                     if (c == '÷') { // division
                         eatChar();
                         v /= parseFactor();
-                    } else if (c == '×' || c == '(' || c == '√') { // multiplication
+                    } else if (c == '×' || c == '(' || c == '√' || c == 's' || c == 'c' || c == 't') { // multiplication
                         if (c == '×') eatChar();
                         v *= parseFactor();
                     } else {
@@ -365,7 +410,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             }
 
             double parseFactor() {
-                double v;
+                double v = 0;
                 boolean negate = false;
                 eatSpace();
                 if (c == '+' || c == '-') { // unary plus & minus
@@ -377,11 +422,32 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                     eatChar();
                     v = parseExpression();
                     if (c == ')') eatChar();
-                }
-                else if (c == '√') {    //root
+                } else if (c == '√') {    //root
                     eatChar();
                     v = Math.sqrt(parseExpression());
-                } else  { // numbers
+                } else if (c == 's' || c == 'c' || c == 't') {
+                    int o = c;
+                    eatChar();
+                    eatChar();
+                    eatChar();
+                    if (c == 'h')   {
+                        eatChar();
+                        if (o == 's')
+                            v = Math.sinh(parseExpression());
+                        else if (o == 'c')
+                            v = Math.cosh(parseExpression());
+                        else if (o == 't')
+                            v = Math.tanh(parseExpression());
+                    }
+                    else    {
+                        if (o == 's')
+                            v = Math.sin(parseExpression());
+                        else if (o == 'c')
+                            v = Math.cos(parseExpression());
+                        else if (o == 't')
+                            v = Math.tan(parseExpression());
+                    }
+                } else { // numbers
                     StringBuilder sb = new StringBuilder();
                     while ((c >= '0' && c <= '9') || c == '.') {
                         sb.append((char)c);
@@ -406,7 +472,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             result = new Parser().parse();
         }
         catch (Exception e) {
-            Log.d("Error",e.getStackTrace().toString());
             e.printStackTrace();
         }
         String print;
