@@ -191,8 +191,16 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         reset();
     }
 
-    public void btnParClicked(View v)   {
+    public void btnOpParClicked(View v)   {
+        insert('(');
+    }
 
+    public void btnClParClicked(View v)   {
+        insert(')');
+    }
+
+    public void btnCrtClicked(View v){
+        insert('^');
     }
 
     public void btnSignClicked(View v)  {
@@ -218,7 +226,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         findViewById(R.id.Btnln_id).setVisibility(View.GONE);
         findViewById(R.id.Btnroot_id).setVisibility(View.GONE);
         findViewById(R.id.Btncrt_id).setVisibility(View.GONE);
-        ((Button)findViewById(R.id.Btnclear_id)).setText("CLEAR");
     }
 
     private void hideProgrammatic() {
@@ -228,6 +235,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     private void showBasic()    {
         hideScientific();
         hideProgrammatic();
+        ((Button)findViewById(R.id.Btnclear_id)).setText("CLEAR");
     }
 
     private void showScientific()   {
@@ -275,7 +283,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         }
         else
             Log.v("debug","false");
-        if (!str.equals(" "))
+        if (!str.equals(" ") || j == '(')
             str = str+j;
         showResult.setText(str);
     }
@@ -340,7 +348,10 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 double v = parseFactor();
                 for (;;) {
                     eatSpace();
-                    if (c == '÷') { // division
+                    if (c == '^')   {   //exponent
+                        eatChar();
+                        v = Math.pow(v,parseFactor());
+                    } else if (c == '÷') { // division
                         eatChar();
                         v /= parseFactor();
                     } else if (c == '×' || c == '(') { // multiplication
