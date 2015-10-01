@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
         showResult = (EditText)findViewById(R.id.result_id);
+        findViewById(R.id.Btnback_id).setBackground(
+                findViewById(R.id.Btn1_id).getBackground()
+        );
 
         showBasic();
         setTitle(mTitle);
