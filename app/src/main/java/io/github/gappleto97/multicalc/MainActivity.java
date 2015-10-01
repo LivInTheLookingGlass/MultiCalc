@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 findViewById(R.id.Btn1_id).getBackground()
         );
 
-        showBasic();
         setTitle(mTitle);
     }
 
