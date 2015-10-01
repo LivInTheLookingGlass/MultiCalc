@@ -269,6 +269,17 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     }
 
     private void hideProgrammatic() {
+        findViewById(R.id.BtnA_id).setVisibility(View.GONE);
+        findViewById(R.id.rowSpecial).setVisibility(View.GONE);
+        //findViewById(R.id.BtnB_id).setVisibility(View.GONE);
+        //findViewById(R.id.BtnC_id).setVisibility(View.GONE);
+        //findViewById(R.id.BtnD_id).setVisibility(View.GONE);
+        //findViewById(R.id.BtnE_id).setVisibility(View.GONE);
+        //findViewById(R.id.BtnF_id).setVisibility(View.GONE);
+        findViewById(R.id.BtnHex_id).setVisibility(View.GONE);
+        findViewById(R.id.BtnDec_id).setVisibility(View.GONE);
+        findViewById(R.id.BtnOct_id).setVisibility(View.GONE);
+        findViewById(R.id.Btnbin_id).setVisibility(View.GONE);
     }
 
     private void showBasic()    {
@@ -299,6 +310,17 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         mode = "programming";
         hideBasic();
         hideScientific();
+        findViewById(R.id.BtnA_id).setVisibility(View.VISIBLE);
+        findViewById(R.id.rowSpecial).setVisibility(View.VISIBLE);
+        //findViewById(R.id.BtnB_id).setVisibility(View.VISIBLE);
+        //findViewById(R.id.BtnC_id).setVisibility(View.VISIBLE);
+        //findViewById(R.id.BtnD_id).setVisibility(View.VISIBLE);
+        //findViewById(R.id.BtnE_id).setVisibility(View.VISIBLE);
+        //findViewById(R.id.BtnF_id).setVisibility(View.VISIBLE);
+        findViewById(R.id.BtnHex_id).setVisibility(View.VISIBLE);
+        findViewById(R.id.BtnDec_id).setVisibility(View.VISIBLE);
+        findViewById(R.id.BtnOct_id).setVisibility(View.VISIBLE);
+        findViewById(R.id.Btnbin_id).setVisibility(View.VISIBLE);
     }
 
     private void reset() {
