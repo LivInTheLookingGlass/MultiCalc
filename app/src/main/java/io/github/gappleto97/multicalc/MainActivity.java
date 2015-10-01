@@ -331,7 +331,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     private void insert(char j) {
         String a = str.substring(str.length() - 1);
         Log.v("debug", a);
-        if (str.endsWith("x") || str.endsWith("/") || str.endsWith("+") || str.endsWith("-") || str.endsWith(".")) {
+        if (str.endsWith("×") || str.endsWith("/") || str.endsWith("+") || str.endsWith("-") || str.endsWith(".")) {
             str = str.substring(0, str.length() - 1);
             Log.v("debug","true");
         }
@@ -353,6 +353,15 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     private void perform() {
         // TODO Auto-generated method stub
         str = "";
+    }
+
+    private double factorial(double v)    {
+        v = (int)v;
+        Log.d("Debug","Value of i = " + v);
+        if (v > 1)
+            return v * factorial(v-1);
+        else
+            return v;
     }
 
     class Parser {
@@ -383,6 +392,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         // trig = sin factor | sinh factor | cos factor | cosh factor | tan factor | tanh factor
 
         double parseExpression() {
+            Log.d("Debug","Expression started");
             double v = parseTerm();
             for (; ; ) {
                 eatSpace();
@@ -399,6 +409,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         }
 
         double parseTerm() {
+            Log.d("Debug","Term started");
             double v = parseFactor();
             for (; ; ) {
                 eatSpace();
@@ -408,13 +419,20 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 } else if (c == '×' || c == '(' || c == '√' || c == 's' || c == 'c' || c == 't' || c == 'l') { // multiplication
                     if (c == '×') eatChar();
                     v *= parseFactor();
-                } else {
+                } else if (c == '!') {
+                    v = factorial(v);
+                    eatChar();
+                } else if (c == 'E')    {
+                    eatChar();
+                    v = v * Math.pow(10,parseFactor());
+                } else  {
                     return v;
                 }
             }
         }
 
         double parseFactor() {
+            Log.d("Debug","Factor started");
             double v = 0;
             boolean negate = false;
             eatSpace();
