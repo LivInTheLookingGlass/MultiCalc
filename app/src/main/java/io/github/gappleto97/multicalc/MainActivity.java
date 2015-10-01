@@ -3,7 +3,6 @@ package io.github.gappleto97.multicalc;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -52,8 +51,8 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
+        getSupportFragmentManager()
+                .beginTransaction()
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                 .commit();
     }
@@ -258,7 +257,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     }
 
     private void hideScientific()   {
-        mode = "scientific";
         findViewById(R.id.Btnsin_id).setVisibility(View.GONE);
         findViewById(R.id.Btnsinh_id).setVisibility(View.GONE);
         findViewById(R.id.Btncos_id).setVisibility(View.GONE);
@@ -272,7 +270,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     }
 
     private void hideProgrammatic() {
-        mode = "programming";
     }
 
     private void showBasic()    {
@@ -283,6 +280,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     }
 
     private void showScientific()   {
+        mode = "scientific";
         hideBasic();
         hideProgrammatic();
         findViewById(R.id.Btnsin_id).setVisibility(View.VISIBLE);
@@ -299,6 +297,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     }
 
     private void showProgrammatic() {
+        mode = "programming";
         hideBasic();
         hideScientific();
     }
