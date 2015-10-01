@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
@@ -357,127 +355,127 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         str = "";
     }
 
-    private void calculate() {
-        class Parser {
-            int pos = -1, c;
+    class Parser {
+        int pos = -1, c;
 
-            void eatChar() {
-                c = (++pos < str.length()) ? str.charAt(pos) : -1;
-            }
+        void eatChar() {
+            c = (++pos < str.length()) ? str.charAt(pos) : -1;
+        }
 
-            void eatSpace() {
-                while (Character.isWhitespace(c))
-                    eatChar();
-            }
-
-            double parse() {
+        void eatSpace() {
+            while (Character.isWhitespace(c))
                 eatChar();
-                double v = parseExpression();
-                if (c != -1)
-                    throw new RuntimeException("Unexpected: " + (char)c);
-                return v;
-            }
+        }
 
-            // Grammar:
-            // expression = term | expression `+` term | expression `-` term
-            // term = factor | term `*` factor | term `/` factor | term brackets | term root
-            // factor = brackets | number | factor `^` factor | trig
-            // brackets = `(` expression `)`
-            // trig = sin factor | sinh factor | cos factor | cosh factor | tan factor | tanh factor
+        double parse() {
+            eatChar();
+            double v = parseExpression();
+            if (c != -1)
+                throw new RuntimeException("Unexpected: " + (char) c);
+            return v;
+        }
 
-            double parseExpression() {
-                double v = parseTerm();
-                for (;;) {
-                    eatSpace();
-                    if (c == '+') { // addition
-                        eatChar();
-                        v += parseTerm();
-                    } else if (c == '-') { // subtraction
-                        eatChar();
-                        v -= parseTerm();
-                    } else {
-                        return v;
-                    }
-                }
-            }
+        // Grammar:
+        // expression = term | expression `+` term | expression `-` term
+        // term = factor | term `*` factor | term `/` factor | term brackets | term root
+        // factor = brackets | number | factor `^` factor | trig
+        // brackets = `(` expression `)`
+        // trig = sin factor | sinh factor | cos factor | cosh factor | tan factor | tanh factor
 
-            double parseTerm() {
-                double v = parseFactor();
-                for (;;) {
-                    eatSpace();
-                    if (c == '÷') { // division
-                        eatChar();
-                        v /= parseFactor();
-                    } else if (c == '×' || c == '(' || c == '√' || c == 's' || c == 'c' || c == 't' || c == 'l') { // multiplication
-                        if (c == '×') eatChar();
-                        v *= parseFactor();
-                    } else {
-                        return v;
-                    }
-                }
-            }
-
-            double parseFactor() {
-                double v = 0;
-                boolean negate = false;
+        double parseExpression() {
+            double v = parseTerm();
+            for (; ; ) {
                 eatSpace();
-                if (c == '+' || c == '-') { // unary plus & minus
-                    negate = c == '-';
+                if (c == '+') { // addition
                     eatChar();
-                    eatSpace();
+                    v += parseTerm();
+                } else if (c == '-') { // subtraction
+                    eatChar();
+                    v -= parseTerm();
+                } else {
+                    return v;
                 }
-                if (c == '(') { // brackets
-                    eatChar();
-                    v = parseExpression();
-                    if (c == ')') eatChar();
-                } else if (c == '√') {    //root
-                    eatChar();
-                    v = Math.sqrt(parseExpression());
-                } else if (c == 's' || c == 'c' || c == 't') {
-                    int o = c;
-                    eatChar();
-                    eatChar();
-                    eatChar();
-                    if (c == 'h')   {
-                        eatChar();
-                        if (o == 's')
-                            v = Math.sinh(parseExpression());
-                        else if (o == 'c')
-                            v = Math.cosh(parseExpression());
-                        else if (o == 't')
-                            v = Math.tanh(parseExpression());
-                    }
-                    else    {
-                        if (o == 's')
-                            v = Math.sin(parseExpression());
-                        else if (o == 'c')
-                            v = Math.cos(parseExpression());
-                        else if (o == 't')
-                            v = Math.tan(parseExpression());
-                    }
-                } else if (c == 'l')    {
-                    eatChar();
-                    eatChar();
-                    v = Math.log(parseExpression());
-                } else { // numbers
-                    StringBuilder sb = new StringBuilder();
-                    while ((c >= '0' && c <= '9') || c == '.') {
-                        sb.append((char)c);
-                        eatChar();
-                    }
-                    if (sb.length() == 0)
-                        throw new RuntimeException("Unexpected: " + (char)c);
-                    v = Double.parseDouble(sb.toString());
-                }
-                eatSpace();
-                if (c == '^') { // exponentiation
-                    eatChar();
-                }
-                if (negate)
-                    v = -v; // unary minus is applied after exponentiation; e.g. -3^2=-9
-                return v;
             }
         }
+
+        double parseTerm() {
+            double v = parseFactor();
+            for (; ; ) {
+                eatSpace();
+                if (c == '÷') { // division
+                    eatChar();
+                    v /= parseFactor();
+                } else if (c == '×' || c == '(' || c == '√' || c == 's' || c == 'c' || c == 't' || c == 'l') { // multiplication
+                    if (c == '×') eatChar();
+                    v *= parseFactor();
+                } else {
+                    return v;
+                }
+            }
+        }
+
+        double parseFactor() {
+            double v = 0;
+            boolean negate = false;
+            eatSpace();
+            if (c == '+' || c == '-') { // unary plus & minus
+                negate = c == '-';
+                eatChar();
+                eatSpace();
+            }
+            if (c == '(') { // brackets
+                eatChar();
+                v = parseExpression();
+                if (c == ')') eatChar();
+            } else if (c == '√') {    //root
+                eatChar();
+                v = Math.sqrt(parseExpression());
+            } else if (c == 's' || c == 'c' || c == 't') {
+                int o = c;
+                eatChar();
+                eatChar();
+                eatChar();
+                if (c == 'h') {
+                    eatChar();
+                    if (o == 's')
+                        v = Math.sinh(parseExpression());
+                    else if (o == 'c')
+                        v = Math.cosh(parseExpression());
+                    else if (o == 't')
+                        v = Math.tanh(parseExpression());
+                } else {
+                    if (o == 's')
+                        v = Math.sin(parseExpression());
+                    else if (o == 'c')
+                        v = Math.cos(parseExpression());
+                    else if (o == 't')
+                        v = Math.tan(parseExpression());
+                }
+            } else if (c == 'l') {
+                eatChar();
+                eatChar();
+                v = Math.log(parseExpression());
+            } else { // numbers
+                StringBuilder sb = new StringBuilder();
+                while ((c >= '0' && c <= '9') || c == '.') {
+                    sb.append((char) c);
+                    eatChar();
+                }
+                if (sb.length() == 0)
+                    throw new RuntimeException("Unexpected: " + (char) c);
+                v = Double.parseDouble(sb.toString());
+            }
+            eatSpace();
+            if (c == '^') { // exponentiation
+                eatChar();
+            }
+            if (negate)
+                v = -v; // unary minus is applied after exponentiation; e.g. -3^2=-9
+            return v;
+        }
+    }
+
+    private void calculate() {
         double result;
         result = new Parser().parse();
         String print;
