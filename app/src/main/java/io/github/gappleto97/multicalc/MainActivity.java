@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 
         showResult = (EditText)findViewById(R.id.result_id);
         findViewById(R.id.Btnback_id).setBackground(
-                findViewById(R.id.Btn1_id).getBackground()
+                findViewById(R.id.Btnclear_id).getBackground()
         );
 
         setTitle(mTitle);
@@ -420,7 +420,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     }
 
     private double factorial(double v)    {
-        v = (int)v;
+        v = Math.floor(v);
         Log.d("Debug","Value of i = " + v);
         if (v > 1)
             return v * factorial(v-1);
