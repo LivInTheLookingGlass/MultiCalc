@@ -39,7 +39,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="0.25"
-                android:text="clr"
+                android:text="clear"
                 android:onClick="btnclearClicked"
                 />
 
@@ -81,12 +81,12 @@
                 android:onClick="btnmultiClicked"
                 />
 
-            <Button
+            <ImageButton
                 android:id="@+id/Btnback_id"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="0.25"
-                android:text="\u232B"
+                android:src="@drawable/backspace"
                 android:onClick="btnbackClicked"
                 />
         </LinearLayout>
