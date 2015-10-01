@@ -168,6 +168,30 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         insert(9);
     }
 
+    public void btnAClicked(View v){
+        insert("A");
+    }
+
+    public void btnBClicked(View v){
+        insert("B");
+    }
+
+    public void btnCClicked(View v){
+        insert("C");
+    }
+
+    public void btnDClicked(View v){
+        insert("D");
+    }
+
+    public void btnEClicked(View v){
+        insert("E");
+    }
+
+    public void btnFClicked(View v){
+        insert("F");
+    }
+
     public void btnplusClicked(View v){
         insert('+');
     }
@@ -247,6 +271,22 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         insert("tanh");
     }
 
+    public void btnBinClicked(View v)  {
+        insert("Bin");
+    }
+
+    public void btnOctClicked(View v)  {
+        insert("Oct");
+    }
+
+    public void btnDecClicked(View v)  {
+        //TODO: Add Bin/Oct/Hex removal function
+    }
+
+    public void btnHexClicked(View v)  {
+        insert("Hex");
+    }
+
     public void btnbackClicked(View v)  {
         remove();
     }
@@ -321,6 +361,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         findViewById(R.id.BtnDec_id).setVisibility(View.VISIBLE);
         findViewById(R.id.BtnOct_id).setVisibility(View.VISIBLE);
         findViewById(R.id.Btnbin_id).setVisibility(View.VISIBLE);
+        ((Button)findViewById(R.id.Btnclear_id)).setText("CLR");
     }
 
     private void reset() {
