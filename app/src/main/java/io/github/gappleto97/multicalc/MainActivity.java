@@ -272,11 +272,11 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     }
 
     public void btnBinClicked(View v)  {
-        insert("Bin");
+        insert("BIN");
     }
 
     public void btnOctClicked(View v)  {
-        insert("Oct");
+        insert("OCT");
     }
 
     public void btnDecClicked(View v)  {
@@ -284,7 +284,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     }
 
     public void btnHexClicked(View v)  {
-        insert("Hex");
+        insert("HEX");
     }
 
     public void btnbackClicked(View v)  {
@@ -455,6 +455,22 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         // brackets = `(` expression `)`
         // trig = sin factor | sinh factor | cos factor | cosh factor | tan factor | tanh factor
 
+        String parseNum(int radix)   {
+            String v = "";
+            char a;
+            if (radix > 10)
+                a = (char)('A' + radix - 11);
+            else
+                a = (char)('0' + radix - 1);
+            for (; ; )  {
+                eatSpace();
+                if (!(radix <= 10 && c <= a && c >= '0' || (radix > 10 && (c <= '9' && c >= '0' || c <= a && c >= 'A'))))
+                    return v;
+                v = v + (char)c;
+                eatChar();
+            }
+        }
+
         double parseExpression() {
             Log.d("Debug","Expression started");
             double v = parseTerm();
@@ -480,7 +496,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 if (c == '÷') { // division
                     eatChar();
                     v /= parseFactor();
-                } else if (c == '×' || c == '(' || c == '√' || c == 's' || c == 'c' || c == 't' || c == 'l') { // multiplication
+                } else if (c == '×' || c == '(' || c == '√' || c == 's' || c == 'c' || c == 't' || c == 'l' || c == 'b' || c == 'o' || c == 'd' || c == 'h') { // multiplication
                     if (c == '×') eatChar();
                     v *= parseFactor();
                 } else if (c == '!') {
@@ -539,13 +555,30 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 v = Math.log(parseExpression());
             } else { // numbers
                 StringBuilder sb = new StringBuilder();
-                while ((c >= '0' && c <= '9') || c == '.') {
-                    sb.append((char) c);
-                    eatChar();
+                if (c != 'B' && c != 'O' && c != 'H') {
+                    while ((c >= '0' && c <= '9') || c == '.') {
+                        sb.append((char) c);
+                        eatChar();
+                    }
+                    if (sb.length() == 0)
+                        throw new RuntimeException("Unexpected: " + (char) c);
+                    v = Double.parseDouble(sb.toString());
                 }
-                if (sb.length() == 0)
-                    throw new RuntimeException("Unexpected: " + (char) c);
-                v = Double.parseDouble(sb.toString());
+                else    {
+                    int b = c;
+                    eatChar();
+                    eatChar();
+                    eatChar();
+                    Log.d("Debug"," " + (char)c);
+                    sb.append(parseNum(b == 'B' ? 2 : b == 'O' ? 8 : 16));
+                    v = Integer.valueOf(sb.toString(),(b == 'B' ? 2 : b == 'O' ? 8 : 16)).doubleValue();
+                    if (c == '.') {
+                        sb.delete(0,sb.length()-1);
+                        sb.append(parseNum(b == 'B' ? 2 : b == 'O' ? 8 : 16));
+                        double a = Integer.valueOf(sb.toString(),(b == 'B' ? 2 : b == 'O' ? 8 : 16)).doubleValue();
+                        v += a / Math.pow(10,Math.ceil(Math.log10(a)));
+                    }
+                }
             }
             eatSpace();
             if (c == '^') { // exponentiation
